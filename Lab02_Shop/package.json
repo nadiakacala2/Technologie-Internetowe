@@ -1,0 +1,19 @@
+{
+  "name": "lab02_shop",
+  "version": "1.0.0",
+  "description": "Lab02 — Sklep: koszyk i zamówienia",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "echo \"No tests specified\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "better-sqlite3": "^12.5.0",
+    "express": "^5.2.1",
+    "morgan": "^1.10.1"
+  }
+}

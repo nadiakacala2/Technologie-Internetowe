@@ -1,0 +1,41 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+section {
+    background: white;
+    padding: 15px;
+    margin: 15px auto;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+button {
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+#checkoutBtn {
+    margin-top: 10px;
+    width: 100%;
+    font-size: 16px;
+}
