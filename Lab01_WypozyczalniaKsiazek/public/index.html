@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Wypożyczalnia książek</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Wypożyczalnia książek</h1>
+
+        <section>
+            <h2>Książki</h2>
+            <ul id="books"></ul>
+        </section>
+
+        <section>
+            <h2>Dodaj wypożyczenie</h2>
+            <div class="form">
+                <input id="memberId" placeholder="ID czytelnika">
+                <input id="bookId" placeholder="ID książki">
+                <button onclick="borrow()">Wypożycz</button>
+            </div>
+        </section>
+
+        <section>
+            <h2>Aktywne wypożyczenia</h2>
+            <ul id="loans"></ul>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
