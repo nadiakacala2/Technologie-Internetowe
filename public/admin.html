@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8" />
+    <title>Panel moderatora</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f6fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #2f3640;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 30px auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        a.back {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #0984e3;
+            font-weight: bold;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        .comment {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+            .comment strong {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .comment small {
+                color: #666;
+            }
+
+            .comment p {
+                margin: 10px 0;
+            }
+
+        button {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #219150;
+            }
+
+        .empty {
+            text-align: center;
+            color: #666;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Panel moderatora</h1>
+    </header>
+
+    <main>
+        <a class="back" href="/">← Powrót do bloga</a>
+
+        <h2>Komentarze oczekujące na zatwierdzenie</h2>
+
+        <div id="comments"></div>
+
+        <div id="empty" class="empty" style="display:none;">
+            Brak komentarzy do moderacji.
+        </div>
+    </main>
+
+    <script>
+        // Prosty token administratora (zgodny z backendem)
+        const ADMIN_TOKEN = "admin123";
+
+        async function loadPendingComments() {
+            const res = await fetch("/api/comments/pending");
+            const comments = await res.json();
+
+            const container = document.getElementById("comments");
+            const empty = document.getElementById("empty");
+
+            container.innerHTML = "";
+
+            if (!comments || comments.length === 0) {
+                empty.style.display = "block";
+                return;
+            }
+
+            empty.style.display = "none";
+
+            comments.forEach(c => {
+                const div = document.createElement("div");
+                div.className = "comment";
+
+                div.innerHTML = `
+                    <strong>Autor: ${c.author}</strong>
+                    <small>Post ID: ${c.post_id} | ${c.created_at}</small>
+                    <p>${c.body}</p>
+                    <button onclick="approve(${c.id})">Zatwierdź</button>
+                `;
+
+                container.appendChild(div);
+            });
+        }
+
+        async function approve(id) {
+            const res = await fetch(`/api/comments/${id}/approve`, {
+                method: "POST",
+                headers: {
+                    "x-admin-token": ADMIN_TOKEN
+                }
+            });
+
+            if (!res.ok) {
+                alert("Błąd zatwierdzania komentarza (brak uprawnień administratora).");
+                return;
+            }
+
+            loadPendingComments();
+        }
+
+        window.addEventListener("DOMContentLoaded", loadPendingComments);
+    </script>
+
+
+</body>
+</html>

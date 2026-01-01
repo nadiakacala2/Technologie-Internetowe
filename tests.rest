@@ -1,0 +1,90 @@
+### Lab02 — Sklep
+
+@baseUrl = http://localhost:3000
+@json = application/json
+
+### 1. TEST SERWERA
+
+GET {{baseUrl}}/
+Accept: text/plain
+
+### 2. PRODUKTY (Products)
+
+### Dodanie produktu (201 Created)
+POST {{baseUrl}}/api/products
+Content-Type: {{json}}
+
+{
+  "name": "Laptop",
+  "price": 3999
+}
+
+### Pobranie listy produktów (200 OK)
+GET {{baseUrl}}/api/products
+Accept: {{json}}
+
+### Walidacja produktu — b³êdna cena (422)
+POST {{baseUrl}}/api/products
+Content-Type: {{json}}
+
+{
+  "name": "B³¹d",
+  "price": -100
+}
+
+### 3. KOSZYK (Cart)
+
+### Pobranie pustego koszyka (200 OK)
+GET {{baseUrl}}/api/cart
+Accept: {{json}}
+
+### Dodanie produktu do koszyka (200 OK)
+POST {{baseUrl}}/api/cart/add
+Content-Type: {{json}}
+
+{
+  "product_id": 1,
+  "qty": 1
+}
+
+### Pobranie zawartoœci koszyka
+GET {{baseUrl}}/api/cart
+Accept: {{json}}
+
+### Zmiana iloœci produktu (PATCH)
+PATCH {{baseUrl}}/api/cart/item
+Content-Type: {{json}}
+
+{
+  "product_id": 1,
+  "qty": 2
+}
+
+### Usuniêcie produktu z koszyka (204 No Content)
+DELETE {{baseUrl}}/api/cart/item/1
+
+### Próba usuniêcia nieistniej¹cego produktu (404)
+DELETE {{baseUrl}}/api/cart/item/999
+
+### 4. CHECKOUT (Zamówienie)
+
+### Dodanie produktu do koszyka przed checkoutem
+POST {{baseUrl}}/api/cart/add
+Content-Type: {{json}}
+
+{
+  "product_id": 1,
+  "qty": 1
+}
+
+### Checkout — utworzenie zamówienia (201 Created)
+POST {{baseUrl}}/api/checkout
+Accept: {{json}}
+
+### Sprawdzenie, ¿e koszyk po checkout jest pusty
+GET {{baseUrl}}/api/cart
+Accept: {{json}}
+
+### Próba checkoutu z pustym koszykiem (422)
+POST {{baseUrl}}/api/checkout
+Accept: {{json}}
