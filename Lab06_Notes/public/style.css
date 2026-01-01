@@ -1,0 +1,30 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    padding: 30px;
+    max-width: 700px;
+    margin: auto;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+li {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    list-style: none;
+}
+
+small {
+    color: #666;
+}
+
+mark {
+    background-color: #ffe58a;
+    padding: 0 2px;
+}
+

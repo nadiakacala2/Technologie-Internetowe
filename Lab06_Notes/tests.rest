@@ -1,0 +1,57 @@
+﻿### Health check
+GET http://localhost:3000/health
+
+
+### NOTES
+
+### POST /api/notes – OK
+POST http://localhost:3000/api/notes
+Content-Type: application/json
+
+{
+  "title": "Notatka testowa",
+  "body": "Treść notatki testowej"
+}
+
+
+### POST /api/notes – walidacja (422)
+POST http://localhost:3000/api/notes
+Content-Type: application/json
+
+{
+  "title": "",
+  "body": "ab"
+}
+
+
+### GET /api/notes – lista
+GET http://localhost:3000/api/notes
+
+
+### GET /api/notes – wyszukiwanie q
+GET http://localhost:3000/api/notes?q=zakupy
+
+
+### TAGS
+
+### GET /api/tags – lista tagów
+GET http://localhost:3000/api/tags
+
+
+### POST /api/notes/{id}/tags – przypisanie tagów
+POST http://localhost:3000/api/notes/2/tags
+Content-Type: application/json
+
+{
+  "tags": ["work", "home", "shopping"]
+}
+
+
+### FILTRY
+
+### GET /api/notes?tag=work
+GET http://localhost:3000/api/notes?tag=work
+
+
+### GET /api/notes?tag=shopping&q=zakupy
+GET http://localhost:3000/api/notes?tag=shopping&q=zakupy
