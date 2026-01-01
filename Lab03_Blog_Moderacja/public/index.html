@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog – komentarze z moderacją</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Blog</h1>
+
+    <section id="posts">
+        <h2>Lista postów</h2>
+        <ul id="postsList"></ul>
+    </section>
+
+    <section id="postDetails" class="hidden">
+        <h2 id="postTitle"></h2>
+        <p id="postBody"></p>
+
+        <h3>Komentarze</h3>
+        <ul id="commentsList"></ul>
+
+        <h3>Dodaj komentarz</h3>
+        <form id="commentForm">
+            <input type="text" id="author" placeholder="Autor" required>
+            <textarea id="commentBody" placeholder="Treść komentarza" required></textarea>
+            <button type="submit">Dodaj komentarz</button>
+        </form>
+
+        <p id="commentInfo"></p>
+    </section>
+
+    <p>
+        <a href="admin.html">Panel moderatora</a>
+    </p>
+
+    <script src="app.js"></script>
+</body>
+</html>
