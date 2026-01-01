@@ -1,0 +1,67 @@
+﻿* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 20px;
+    background: #f6f7fb;
+}
+
+h1 {
+    text-align: center;
+}
+
+.add-task {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+    .add-task input,
+    .add-task select,
+    .add-task button {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.column {
+    background: #ffffff;
+    border-radius: 6px;
+    padding: 10px;
+    min-height: 200px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+    .column h2 {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+.task {
+    background: #e9ecf5;
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .task button {
+        font-size: 12px;
+        padding: 4px 6px;
+    }
+
+
+.task-actions {
+    display: flex;
+    gap: 5px;
+}

@@ -1,0 +1,132 @@
+﻿### GET /api/board — stan początkowy
+GET http://localhost:3000/api/board
+Accept: application/json
+
+
+### POST /api/tasks — walidacja (puste body)
+### Oczekiwane: 422
+POST http://localhost:3000/api/tasks
+Content-Type: application/json
+
+{}
+
+
+### POST /api/tasks — walidacja (brak title)
+### Oczekiwane: 422
+POST http://localhost:3000/api/tasks
+Content-Type: application/json
+
+{
+  "col_id": 1
+}
+
+
+### POST /api/tasks — walidacja (zły col_id)
+### Oczekiwane: 422
+POST http://localhost:3000/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Zły col_id",
+  "col_id": -1
+}
+
+
+### POST /api/tasks — happy path (Todo)
+### Oczekiwane: 201 Created
+POST http://localhost:3000/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Pierwsze zadanie",
+  "col_id": 1
+}
+
+
+
+### POST /api/tasks/{id}/move — walidacja (nieistniejące id)
+### Oczekiwane: 404
+POST http://localhost:3000/api/tasks/999/move
+Content-Type: application/json
+
+{
+  "col_id": 2,
+  "ord": 1
+}
+
+
+### POST /api/tasks/{id}/move — walidacja (zły ord)
+### Oczekiwane: 422
+POST http://localhost:3000/api/tasks/1/move
+Content-Type: application/json
+
+{
+  "col_id": 2,
+  "ord": 0
+}
+
+
+### POST /api/tasks/{id}/move — happy path (Todo → Doing)
+POST http://localhost:3000/api/tasks/1/move
+Content-Type: application/json
+
+{
+  "col_id": 2,
+  "ord": 1
+}
+
+
+### Create task A (Todo)
+POST http://localhost:3000/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Task A",
+  "col_id": 1
+}
+
+
+### Create task B (Todo)
+POST http://localhost:3000/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Task B",
+  "col_id": 1
+}
+
+
+### Create task C (Todo)
+POST http://localhost:3000/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Task C",
+  "col_id": 1
+}
+
+
+
+### Move task C to top (ord=1) in same column
+POST http://localhost:3000/api/tasks/3/move
+Content-Type: application/json
+
+{
+  "col_id": 1,
+  "ord": 1
+}
+
+### Move task A to Doing at ord=1
+POST http://localhost:3000/api/tasks/1/move
+Content-Type: application/json
+
+{
+  "col_id": 2,
+  "ord": 1
+}
+
+
+
+### GET /api/board — po wszystkich operacjach
+GET http://localhost:3000/api/board
+Accept: application/json

@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8" />
+    <title>Lab05 – Kanban</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>Kanban Board</h1>
+
+    <section class="add-task">
+        <input id="taskTitle" type="text" placeholder="Nowe zadanie..." />
+        <select id="taskColumn">
+            <option value="1">Todo</option>
+            <option value="2">Doing</option>
+            <option value="3">Done</option>
+        </select>
+        <button id="addTaskBtn">Dodaj</button>
+    </section>
+
+    <main id="board" class="board">
+        <!-- Kolumny renderowane z JS -->
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
