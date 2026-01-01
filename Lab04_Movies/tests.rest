@@ -1,0 +1,86 @@
+### ======================================
+### Lab04 – Movies API
+### ======================================
+
+@baseUrl = http://localhost:3000
+
+### GET /api/movies – lista filmów i ranking
+GET {{baseUrl}}/api/movies
+Content-Type: application/json
+
+
+### GET /api/movies?year=2010 – filtrowanie po roku
+GET {{baseUrl}}/api/movies?year=2010
+Content-Type: application/json
+
+
+### GET – bonus Top-N
+
+### GET /api/movies/top – Top-N (domyœlnie 5)
+GET {{baseUrl}}/api/movies/top
+Content-Type: application/json
+
+
+### GET /api/movies/top?limit=2 – Top 2 filmy
+GET {{baseUrl}}/api/movies/top?limit=2
+Content-Type: application/json
+
+
+### POST – happy path
+
+### POST /api/movies – poprawne dodanie filmu
+POST {{baseUrl}}/api/movies
+Content-Type: application/json
+
+{
+  "title": "Interstellar",
+  "year": 2014
+}
+
+
+### POST /api/ratings – poprawne dodanie oceny
+POST {{baseUrl}}/api/ratings
+Content-Type: application/json
+
+{
+  "movie_id": 1,
+  "score": 5
+}
+
+
+### POST – walidacja i b³êdy
+
+### POST /api/movies – brak year (422)
+POST {{baseUrl}}/api/movies
+Content-Type: application/json
+
+{
+  "title": "Test movie"
+}
+
+
+### POST /api/ratings – score poza zakresem (422)
+POST {{baseUrl}}/api/ratings
+Content-Type: application/json
+
+{
+  "movie_id": 1,
+  "score": 10
+}
+
+
+### POST /api/ratings – nieistniej¹cy film (404)
+POST {{baseUrl}}/api/ratings
+Content-Type: application/json
+
+{
+  "movie_id": 9999,
+  "score": 3
+}
+
+
+### 404 – nieistniej¹cy endpoint
+
+### GET /api/unknown – 404
+GET {{baseUrl}}/api/unknown
+Content-Type: application/json

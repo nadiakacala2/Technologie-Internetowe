@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8" />
+    <title>Lab04 – Filmy i oceny</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>🎬 Ranking filmów</h1>
+
+    <section>
+        <h2>Lista filmów</h2>
+        <table id="moviesTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tytuł</th>
+                    <th>Rok</th>
+                    <th>Średnia</th>
+                    <th>Głosy</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Dodaj film</h2>
+        <form id="addMovieForm">
+            <input type="text" id="movieTitle" placeholder="Tytuł" required />
+            <input type="number" id="movieYear" placeholder="Rok" required />
+            <button type="submit">Dodaj film</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Dodaj ocenę</h2>
+        <form id="addRatingForm">
+            <input type="number" id="ratingMovieId" placeholder="ID filmu" required />
+            <input type="number" id="ratingScore" placeholder="Ocena (1–5)" min="1" max="5" required />
+            <button type="submit">Dodaj ocenę</button>
+        </form>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html>
